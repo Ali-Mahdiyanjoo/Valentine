@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖ᩚ Be my valentine?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Animation for Welcome Screen */
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+        
+        .welcome-overlay {
+            animation: fadeOut 0.5s forwards;
+            animation-delay: 3s; /* Waits 3 seconds before fading */
+        }
+
+        /* Smooth transition for button growth */
+        #yesBtn {
+            transition: transform 0.2s ease;
+        }
+    </style>
+</head>
+<body class="bg-pink-100 flex flex-col items-center justify-center min-h-screen overflow-hidden font-sans relative select-none">
+
+    <div class="welcome-overlay fixed inset-0 z-50 flex items-center justify-center bg-rose-200 pointer-events-none">
+        <h1 class="text-5xl md:text-7xl font-bold text-white drop-shadow-md animate-pulse">
+            Hello... 💗ᩚ
+        </h1>
+    </div>
+
+    <div class="fixed inset-0 z-[-1] bg-cover bg-center opacity-50" 
+     style="background-image: url('BackGround.jpeg');">
+    </div>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg" 
+         class="fixed animate-pulse top-10 md:left-24 left-6 md:w-40 w-28 drop-shadow-xl" 
+         alt="Decoration">
+
+    <div id="mainContainer" class="text-center z-10 w-full max-w-2xl px-4 flex flex-col items-center">
+        
+        <img id="mainImage" 
+             src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.webp" 
+             class="h-64 object-contain mx-auto mb-6 rounded-xl shadow-lg" 
+             alt="Cute Bear">
+
+        <h1 class="text-4xl md:text-6xl font-bold my-4 text-rose-600 drop-shadow-sm" style="font-family: 'Fredoka', sans-serif;">
+            Will you be my Valentine?
+        </h1>
+
+        <div class="flex flex-wrap justify-center gap-8 mt-8 items-center w-full relative h-20">
+            <button id="yesBtn" onclick="handleYes()" 
+                    class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg text-xl shadow-md z-20">
+                Yes
+            </button>
+            
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()" 
+                    class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-lg text-xl shadow-md transition-all duration-100 ease-in-out">
+                No
+            </button>
+        </div>
+    </div>
+
+    <a class="fixed bottom-2 right-2 backdrop-blur-md opacity-80 hover:opacity-95 border p-2 rounded-lg border-rose-300 text-rose-800 text-sm font-semibold transition" 
+       href="https://github.com/Ali-Mahdiyanjoo/Valentine" target="_blank">
+        Made with <span role="img" aria-label="heart">💖ᩚ</span>
+    </a>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const mainImage = document.getElementById('mainImage');
+        const mainContainer = document.getElementById('mainContainer');
+        
+        let yesScale = 1;
+
+        // Function to move the 'No' button and grow the 'Yes' button
+        function moveButton() {
+            // 1. Make Yes button bigger (2x each time)
+            yesScale *= 2;
+            yesBtn.style.transform = `scale(${yesScale})`;
+
+            // 2. Move No button randomly
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 100);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100);
+            
+            noBtn.style.position = "fixed"; // Detach from flow
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        }
+
+        // Function for Success
+        function handleYes() {
+            // Replace content with Success message
+            mainContainer.innerHTML = `
+                <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" 
+                     class="h-64 object-contain mx-auto mb-6 rounded-xl shadow-lg" alt="Kisses">
+                <div class="text-4xl md:text-6xl font-bold my-4 text-rose-600">
+                    Ok Yayyyyy!!!
+                </div>
+            `;
+            
+            // Optional: Launch confetti (simulated by simple background change)
+            document.body.style.backgroundColor = "#ffe4e6";
+        }
+    </script>
+</body>
+</html>   
