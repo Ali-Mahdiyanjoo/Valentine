@@ -6,6 +6,8 @@
     <title>💖ᩚ Be my valentine?</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap');
+
         /* Custom Animation for Welcome Screen */
         @keyframes fadeOut {
             0% { opacity: 1; }
@@ -72,40 +74,34 @@
     <script>
         const noBtn = document.getElementById('noBtn');
         const yesBtn = document.getElementById('yesBtn');
-        const mainImage = document.getElementById('mainImage');
         const mainContainer = document.getElementById('mainContainer');
         
         let yesScale = 1;
 
         // Function to move the 'No' button and grow the 'Yes' button
         function moveButton() {
-            // 1. Make Yes button bigger (2x each time)
             yesScale *= 2;
             yesBtn.style.transform = `scale(${yesScale})`;
 
-            // 2. Move No button randomly
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 100);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100);
             
-            noBtn.style.position = "fixed"; // Detach from flow
+            noBtn.style.position = "fixed";
             noBtn.style.left = `${x}px`;
             noBtn.style.top = `${y}px`;
         }
 
-        // Function for Success
+        // Function for Success (Simplified)
         function handleYes() {
-            // Replace content with Success message
             mainContainer.innerHTML = `
                 <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" 
                      class="h-64 object-contain mx-auto mb-6 rounded-xl shadow-lg" alt="Kisses">
-                <div class="text-4xl md:text-6xl font-bold my-4 text-rose-600">
+                <div class="text-4xl md:text-6xl font-bold my-4 text-rose-600" style="font-family: 'Fredoka', sans-serif;">
                     Ok Yayyyyy!!!
                 </div>
             `;
-            
-            // Optional: Launch confetti (simulated by simple background change)
             document.body.style.backgroundColor = "#ffe4e6";
         }
     </script>
 </body>
-</html>   
+</html>
